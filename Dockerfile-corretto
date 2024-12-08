@@ -26,7 +26,6 @@ ENV PATH="${JAVA_HOME}/bin:${PATH}"
 # copy JRE from the base image
 COPY --from=corretto-jdk /customjre $JAVA_HOME
 
-MAINTAINER USHAHEMBA UKANGE <ushahemba.ukange@interswitchng.com>
 
 EXPOSE 8080 8080
 

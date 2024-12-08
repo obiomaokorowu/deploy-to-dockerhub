@@ -1,0 +1,49 @@
+pipeline {
+    agent none
+    stages {
+        stage('Build and Test') {
+            parallel {
+                stage('AWS') {
+                    agent { label 'aws-agent' }
+                    steps {
+                        // Your AWS-specific build and test steps
+                    }
+                }
+                stage('Azure') {
+                    agent { label 'azure-agent' }
+                    steps {
+                        // Your Azure-specific build and test steps
+                    }
+                }
+                stage('On-Premise') {
+                    agent { label 'on-premise-agent' }
+                    steps {
+                        // Your on-premise-specific build and test steps
+                    }
+                }
+            }
+        }
+        stage('Deploy') {
+            parallel {
+                stage('AWS Deploy') {
+                    agent { label 'aws-agent' }
+                    steps {
+                        // Your AWS-specific deployment steps
+                    }
+                }
+                stage('Azure Deploy') {
+                    agent { label 'azure-agent' }
+                    steps {
+                        // Your Azure-specific deployment steps
+                    }
+                }
+                stage('On-Premise Deploy') {
+                    agent { label 'on-premise-agent' }
+                    steps {
+                        // Your on-premise-specific deployment steps
+                    }
+                }
+            }
+        }
+    }
+}
